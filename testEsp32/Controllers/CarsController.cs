@@ -35,10 +35,10 @@ namespace testEsp32
         // POST: api/Cars
         // To protect from overposting attacks, enable the specific properties you want to bind to, for
         // more details, see https://go.microsoft.com/fwlink/?linkid=2123754.
-        [HttpPost]
-        public ActionResult PostCars([Required] int id, [Required] int carState)
+        [HttpPost("{id}")]
+        public ActionResult PostCars(int id, [Required] int state)
         {
-            CarStateDto carDto = new CarStateDto(id, carState);
+            CarStateDto carDto = new CarStateDto(id, state);
 
             string mqttJson = JsonConvert.SerializeObject(carDto).ToLower();
             try
